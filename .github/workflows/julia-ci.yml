@@ -1,0 +1,20 @@
+name: Julia Checks
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  format-check:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./backend
+    steps:
+    - uses: actions/checkout@v4
+    - uses: julia-actions/setup-julia@v1
+      with:
+        version: '1.9'
+    - name: Format check
+      run: julia --project -e 'using Pkg; Pkg.add("JuliaFormatter"); using JuliaFormatter; format(".")'
