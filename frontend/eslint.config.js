@@ -1,9 +1,12 @@
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 
-// Теперь можно использовать require для импорта CommonJS-модулей
-const js = require('@eslint/js');
-const globals = require('globals');
+import js from '@eslint/js';
+import globals from 'globals';
+
+// Импортируем парсер и плагин правильно
+import babelParser from '@babel/eslint-parser';
+import reactPlugin from 'eslint-plugin-react';
 
 export default [
     {
@@ -14,7 +17,7 @@ export default [
             globals: {
                 ...globals.browser,
             },
-            parser: '@babel/eslint-parser',
+            parser: babelParser, // Передаем импортированный объект парсера
             parserOptions: {
                 requireConfigFile: false,
                 babelOptions: {
@@ -23,7 +26,7 @@ export default [
             }
         },
         plugins: {
-            react: require('eslint-plugin-react')
+            react: reactPlugin // Передаем импортированный объект плагина
         },
         rules: {
             ...js.configs.recommended.rules,
