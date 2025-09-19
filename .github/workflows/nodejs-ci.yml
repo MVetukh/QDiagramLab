@@ -12,13 +12,15 @@ jobs:
       run:
         working-directory: ./frontend
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-node@v4
-      with:
-        node-version: '18'
-        cache: 'npm'
-        cache-dependency-path: frontend/package-lock.json
-    - name: Install dependencies
-      run: npm ci
-    - name: Run ESLint
-      run: npx eslint src/
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: frontend/package-lock.json
+      - name: Install dependencies
+        run: npm ci
+      - name: Install ESLint
+        run: npm install --save-dev eslint@latest
+      - name: Run lint
+        run: npx eslint src/ --config eslint.config.js
