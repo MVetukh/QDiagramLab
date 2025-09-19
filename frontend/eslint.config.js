@@ -1,5 +1,9 @@
-import js from '@eslint/js';
-import globals from 'globals';
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+
+// Теперь можно использовать require для импорта CommonJS-модулей
+const js = require('@eslint/js');
+const globals = require('globals');
 
 export default [
     {
