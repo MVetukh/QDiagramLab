@@ -30,7 +30,7 @@ export default [
         },
         rules: {
             ...js.configs.recommended.rules,
-            'indent': ['error', 4],
+            'indent': ['error', 2],
             'quotes': ['error', 'single'],
             'semi': ['error', 'always'],
             'react/jsx-uses-react': 'error',
