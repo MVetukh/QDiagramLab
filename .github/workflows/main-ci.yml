@@ -15,9 +15,11 @@ jobs:
     - uses: actions/checkout@v4
     - uses: julia-actions/setup-julia@v1
       with:
-        version: '1.9'
+        version: '1.11.2'  # Используем ту же версию, что и локально
     - name: Install dependencies
-      run: julia --project -e 'using Pkg; Pkg.instantiate()'
+      run: |
+        julia --project -e 'using Pkg; Pkg.instantiate()'
+        julia --project -e 'using Pkg; Pkg.resolve()'  # Явно разрешаем зависимости
     - name: Run tests
       run: julia --project -e 'using Pkg; Pkg.test()'
 
@@ -42,5 +44,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
+    - name: Setup Docker
+      uses: docker/setup-buildx-action@v3  # Устанавливаем Docker
+    - name: Install docker-compose
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y docker-compose-plugin  # Устанавливаем docker-compose plugin
     - name: Validate docker-compose
-      run: docker-compose config
+      run: docker compose config  # Используем новую команду docker compose
