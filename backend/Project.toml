@@ -3,17 +3,15 @@ uuid = "b6a8f3c2-9d4a-4f2f-9a2a-0c1b2d3e4f5a"
 authors = ["Max <maximvetuh@gmail.com>"]
 version = "0.1.0"
 
-
 [deps]
 HTTP = "cd3eb016-35fb-5094-929b-558a96fad6f3"
 JSON3 = "0f8b85d8-7281-11e9-16c2-39a750bddbf1"
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 WebSockets = "104b5d7c-a370-577a-8038-80a2059c5097"
 
 [compat]
+Test = "1.11.0"
 julia = "1.11.2"
-
-[extras]
-Test = "8dfed614-1f73-5a04-bd39-5e4f9e7b1b3b"
 
 [targets]
 test = ["Test"]
